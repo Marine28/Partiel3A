@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @livre.title %>
+</p>
+
+<p>
+  <strong>Autor:</strong>
+  <%= @livre.autor %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @livre.description %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @livre.category_id %>
+</p>
+
+<%= link_to 'Edit', edit_livre_path(@livre) %> |
+<%= link_to 'Back', livres_path %>
+
+<h2>Comments</h2>
+<% @livre.comments.each do |comment| %>
+    <p>
+      <strong>Commenter:</strong>
+      <%= comment.commenter %>
+    </p>
+
+    <p>
+      <strong>Comment:</strong>
+      <%= comment.body %>
+    </p>
+<% end %>
+
+<h2>Add a comment </h2>
+<%= form_for([@livre, @livre.comments.build]) do |f| %>
+    <p>
+      <%= f.label :commenter %><br>
+      <%= f.text_field :commenter %>
+    </p>
+
+    <p>
+      <%= f.label :body %><br>
+      <%= f.text_area :body %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
